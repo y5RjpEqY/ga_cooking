@@ -5,9 +5,9 @@
 import java.util.Random;
 import java.util.*;
 
-public class Main{
+public class Main_ori{
     static int N = 10; //遺伝子組の個数
-    static int gSize = 18; //材料の個数
+    static int gSize = 19; //材料の個数
     static int ratioOfMutation = 5; //突然変異の確率
     static List<List<Integer>> ga = new ArrayList<List<Integer>>();
     static List<Material> material = new ArrayList<Material>();
@@ -63,7 +63,7 @@ public class Main{
         evallist.set(i, calc(ga.get(i)));
       }
 
-//      System.out.println(evallist);
+      System.out.println(evallist);
       //交叉に使う上位2つの番号をno1,no2に格納
       no1 = get_no1(evallist);
       no2 = get_no2(evallist);
@@ -75,22 +75,23 @@ public class Main{
       //System.out.println(no1+":"+no2+":"+wo1+":"+wo2);
 
       //遺伝子たちを表示
-//      System.out.println("#####初期値#####");
-//      putGs();
+      System.out.println("#####初期値#####");
+      putGs();
       //それぞれの味パラメータを表示
       for(int i=0; i<N; i++){
-//        putAZI(ga.get(i));
+        putAZI(ga.get(i));
       }
+      System.out.println(ga.get(1));
 
       //それぞれの味パラメータのズレを表示
       //要するに評価関数
       for(int i=0; i<N; i++){
         eval = calc(ga.get(i));
-//        System.out.println("目標とのズレ："+eval);
+        System.out.println("目標とのズレ："+eval);
       }
 
       
-      while(evallist.get(no1) > 0.3){
+      while(evallist.get(no1) > 0.54){
         //交叉
         changeGs();
 
@@ -128,17 +129,17 @@ public class Main{
         //消える下位2つの番号をwo1,wo2に格納
         wo1 = get_wo1(evallist);
         wo2 = get_wo2(evallist);
-        String str_p = count+" "+evallist.get(no1);
-//        String br = "";
+        String str_p = "count :"+count+"      "+evallist.get(no1);
+        String br = "";
         for(int t = 0; t < str_p.length() ; t++){
-//            br += "\b";
+            br += "\b";
         }
-//        System.out.print(str_p);
-//        System.out.print(br);
-//        if(lower > evallist.get(no1)){
-//           lower = evallist.get(no1);
+        System.out.print(str_p);
+        System.out.print(br);
+        if(lower > evallist.get(no1)){
+           lower = evallist.get(no1);
            System.out.println(str_p);
-//        }
+        }
         count++;
       }
 
@@ -454,7 +455,7 @@ public class Main{
             int value = rnd.nextInt(100);
             ga.set(i,value);
             if(check_range(ga)){
-             // System.out.println("check_range is true");
+              System.out.println("check_range is true");
             //  break;
             }
           //}
