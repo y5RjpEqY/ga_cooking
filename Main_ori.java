@@ -90,8 +90,8 @@ public class Main_ori{
         System.out.println("目標とのズレ："+eval);
       }
 
-      
-      while(evallist.get(no1) > 0.54){
+
+      while(evallist.get(no1) > 0.44){
         //交叉
         changeGs();
 
@@ -264,7 +264,7 @@ public class Main_ori{
         gas[3] += x.get(i)*material.get(i).get_spicy();
         gas[4] += x.get(i)*material.get(i).get_bitter();
       }
-      
+
       //sum = sweet + acidity + salty + spicy + bitter;
       gastmp = gas[0];
       gas[0] /= gastmp;
@@ -272,7 +272,7 @@ public class Main_ori{
       gas[2] /= gastmp;
       gas[3] /= gastmp;
       gas[4] /= gastmp;
-      
+
 
       //本当は指定した値との差異を計算し、返す
       u_para = user_parameter.get_user_parameter();
@@ -281,7 +281,7 @@ public class Main_ori{
     	  users = u_para[i] - u_para[0];
     	  eval += Math.abs(gastmp - users);
       }
-      
+
       /*
       eval += Math.abs(sweet - u_para[0]);
       eval += Math.abs(acidity - u_para[1]);
@@ -409,9 +409,11 @@ public class Main_ori{
         }
         i++;
       }
+      System.out.println(temp);
       ga.set(wo1,temp);
 
       i = 0;
+      temp.removeAll(temp);
       while (i < gSize) {
         if (i < gSize/2) {
           temp.add(top_2.get(i));
@@ -420,6 +422,7 @@ public class Main_ori{
         }
         i++;
       }
+      System.out.println(temp);
       ga.set(wo2,temp);
 
     }
